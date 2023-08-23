@@ -1,4 +1,5 @@
-from utils import add_to_expenses, print_expenses
+from curses.ascii import isdigit
+from utils import add_to_expenses, list_expenses, delete_expense
 
 print(
     'What would you like to do?\nEnter "a" to add an expensen\nEnter "v" to view expenses\nEnter "d" to delete an expense'
@@ -17,12 +18,22 @@ if operation == "a":
     print("Enter a description")
     description = input()
     add_to_expenses(catagory, amount, description)
-    print("Expense added successfully")
+
 elif operation == "v":
     print("Catagory? (press 'enter' for all)")
     catagory = input().lower()
-    print_expenses(catagory)
+    list_expenses(catagory)
+
 elif operation == "d":
-    print()
+    expenses = list_expenses("", summarize=False)
+    if len(expenses) == 0:
+        exit()
+
+    print("Please enter the number of the expense you would like to delete")
+    num = input()
+    if not num or not isdigit(num):
+        print("You must enter a valid number")
+        exit()
+    delete_expense(int(num))
 else:
     print("Please input a valid operation")

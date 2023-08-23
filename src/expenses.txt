@@ -1,0 +1,2 @@
+shopping;3.0;none
+food;100.0;food
