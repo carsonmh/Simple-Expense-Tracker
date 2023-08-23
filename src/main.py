@@ -1,8 +1,8 @@
 from curses.ascii import isdigit
-from utils import add_to_expenses, list_expenses, delete_expense
+from utils import add_to_expenses, list_expenses, delete_expense, find_expense
 
 print(
-    'What would you like to do?\nEnter "a" to add an expensen\nEnter "v" to view expenses\nEnter "d" to delete an expense'
+    'What would you like to do?\nEnter "a" to add an expensen\nEnter "v" to view expenses\nEnter "d" to delete an expense\nEnter "s" to search for an expense'
 )
 operation = input().lower()
 if operation == "a":
@@ -35,5 +35,11 @@ elif operation == "d":
         print("You must enter a valid number")
         exit()
     delete_expense(int(num))
+
+elif operation == "s":
+    print("Please enter a description")
+    description = input()
+    find_expense(description)
+
 else:
     print("Please input a valid operation")

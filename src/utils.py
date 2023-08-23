@@ -59,3 +59,16 @@ def delete_expense(num):
     with open("src/expenses.txt", "w") as file:
         file.writelines(lines)
     print(f"Expense {num} deleted!")
+
+
+def find_expense(description):
+    with open("src/expenses.txt", "r") as file:
+        for line in file:
+            elements = line.strip().split(";")
+            if elements[2] == description:
+                print("Expense found! Data:")
+                print(
+                    f"Catagory: {elements[0]}; Price: {elements[1]} Description: {elements[2]}"
+                )
+                return
+        print(f"Element with description {description} not found")
